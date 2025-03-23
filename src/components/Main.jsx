@@ -1,17 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React, {  useState } from 'react'
 import {assets} from '../assets/assets'
 import run from '../config/gemini';
 import SkeletonLoader from './SkeletonLoader';
+import useGMNiStore from '../store/useGMNiStore';
 
 
 const Main = () => {
 
-  const [input, setInput] = useState("");
-    const [recentPrompt, setRecentPrompt] = useState("");
-    const [prevPrompts, setPrevPrompts] = useState([]);
-    const [showResult, setShowResult] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const  [resultData, setResultData] = useState("");
+  const { input, setInput, recentPrompt, setRecentPrompt, prevPrompts, setPrevPrompts, showResult, loading, resultData,setResultData, onSent } = useGMNiStore();
+
+  // const [input, setInput] = useState("");
+  //   const [recentPrompt, setRecentPrompt] = useState("");
+  //   const [prevPrompts, setPrevPrompts] = useState([]);
+  //   const [showResult, setShowResult] = useState(false);
+  //   const [loading, setLoading] = useState(false);
+  //   const  [resultData, setResultData] = useState("");
 
   const handleInput = (e) => {
     setInput(e.target.value);
@@ -20,16 +23,37 @@ const Main = () => {
   const handleSend = () => {
     onSent(input);
   };
- const onSent = async (input) => {
-    setResultData("");
-    setLoading(true);
-    setShowResult(true);
-    setRecentPrompt(input);
-   const response = await run(input);
-    setResultData(response);
-    setLoading(false);
-    setInput("");
-  }
+//   const delayParagraph = (index,newWord) => {
+//     setTimeout(() => {
+//       setResultData(prev => prev + newWord);
+//     }, index * 75);
+//   }
+//  const onSent = async (input) => {
+//     setResultData("");
+//     setLoading(true);
+//     setShowResult(true);
+//     setRecentPrompt(input);
+//     setPrevPrompts(prev => [...prev, input]);
+//    const response = await run(input);
+//    let responseArray = response.split("**");
+//    let newResponse;
+//    for (let i = 0; i < responseArray.length; i++) {
+//      if (i === 0 || i%2 !== 1) {
+//        newResponse += responseArray[i];
+//      }else {
+//       newResponse += "<b>" + responseArray[i] + "</b>";
+//      }
+     
+//    }
+//    let newResponse2 = newResponse.split("*").join("<br/>")
+//     let newResponseArray = newResponse2.split(" ");
+//     newResponseArray.map((arr, index) => {
+      
+//       delayParagraph(index,arr+ " ");
+//     })
+//     setLoading(false);
+//     setInput("");
+//   }
 
   return (
     <section className='container  flex flex-col relative m-4 p-4 font-serif min-h-screen'>
@@ -45,19 +69,19 @@ const Main = () => {
        (<div className='max-h-[70vh] overflow-y-scroll hide-scrollbar'>
           <div className='flex items-center gap-4 mb-4'>
             <img src={assets.user_icon} alt="user" className='w-9 rounded-full' />
-            <p>{recentPrompt}</p>
+            <p className='text-gray-700  text-lg'>{recentPrompt}</p>
           </div>
           
           <div className='flex items-start gap-4'>
             <img src={assets.gemini_icon} alt="gemini_icon" className='w-9' />
-          {loading ? <SkeletonLoader /> : <p >{resultData}</p>}
+          {loading ? <p>Loading....</p> : <p dangerouslySetInnerHTML={{__html: resultData}} className='text-gray-700 leading-loose ' ></p>}
             
           </div>
        </div>) 
        :(<div className='mx-auto w-3/4 flex-grow'>
        {/* hello section */}
       <div className='mt-18'>
-        <p className='text-[40px]  bg-gradient-to-r from-blue-400 via-purple-400 via-40% to-pink-600 bg-clip-text text-transparent text-4xl font-bold'>Hello, Dev.</p>
+        <p className='text-[40px]  bg-gradient-to-r from-blue-400 via-purple-400 via-40% to-pink-600 bg-clip-text text-transparent text-4xl font-bold'>Hello, Theint.</p>
         <p className='text-[40px] font-semibold text-gray-400'>How can I help you today?</p>
       </div>
 
