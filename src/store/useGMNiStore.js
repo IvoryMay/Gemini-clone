@@ -28,6 +28,12 @@ const useGMNiStore = create((set) => ({
       }));
     }, index * 75);
   },
+
+  newChat: ()=>{
+    set((state) => ({ showResult: false })); 
+    set((state) => ({ loading: false }));
+    
+  },
   
   onSent: async (prompt) => {
   set((state) => ({ resultData: "" })); // Reset resultData

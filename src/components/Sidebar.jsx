@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 const Sidebar = () => {
   const [extended, setExtended] = useState(false);
-  const { prevPrompts,setPrevPrompts,onSent,setRecentPrompt } = useGMNiStore();
+  const { prevPrompts,setPrevPrompts,onSent,setRecentPrompt,newChat} = useGMNiStore();
   const toggleExtended = () => {
     setExtended(!extended);
   };
@@ -29,6 +29,10 @@ const Sidebar = () => {
     
     });
   };
+
+  const handleNewChat = () => {
+    newChat();
+  };
   
   return (
     <section className="hidden sm:inline-flex flex-col justify-between  min-h-screen min-w-[180px] m-4 p-4 bg-gray-100 font-serif rounded-md ">
@@ -39,7 +43,9 @@ const Sidebar = () => {
           alt="menu-icon"
           className="w-6 mb-3 cursor-pointer"
         />
-        <div className="inline-flex items-center gap-2 bg-gray-200 p-2 rounded-full mb-3 hover:bg-gray-300 cursor-pointer">
+        <div
+        onClick={handleNewChat}
+        className="inline-flex items-center gap-2 bg-gray-200 p-2 rounded-full mb-3 hover:bg-gray-300 cursor-pointer">
           <img src={assets.plus_icon} alt="plus-icon" className="w-3" />
           {extended ? <p>New Chat</p> : ""}
         </div>
