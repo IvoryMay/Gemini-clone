@@ -35,7 +35,7 @@ const Sidebar = () => {
   };
   
   return (
-    <section className="hidden sm:inline-flex flex-col justify-between  min-h-screen min-w-[180px] m-4 p-4 bg-gray-100 font-serif rounded-md ">
+    <section className="hidden sm:inline-flex flex-col justify-between  min-h-screen  m-4 p-4 bg-gray-100 font-serif rounded-md ">
       <div>
         <img
           onClick={toggleExtended}

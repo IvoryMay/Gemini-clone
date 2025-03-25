@@ -39,23 +39,13 @@ const useGMNiStore = create((set) => ({
   set((state) => ({ resultData: "" })); // Reset resultData
   set((state) => ({ loading: true }));
   set((state) => ({ showResult: true }));
-  // let response;
-  // if(prompt !== undefined){
-  //   response = await run(prompt);
-  //   set((state) => ({ recentPrompt: prompt }));
-
-  // }else{
-  //   set((state) => ({ prevPrompts: [...state.prevPrompts, input] }));
-  //   set((state) => ({ recentPrompt: input }));
-  //    response = await run(input);
-  // }
+  
   set((state) => ({ recentPrompt: prompt }));
   set((state) => ({
     prevPrompts: state.prevPrompts.includes(prompt)
       ? state.prevPrompts
       : [...state.prevPrompts, prompt],
   }));
-  // set((state) => ({ prevPrompts: [...state.prevPrompts, prompt] }));
 
   const response = await run(prompt);
   let responseArray = response.split("**");
