@@ -34,7 +34,7 @@ const Main = () => {
       <nav className="flex items-center justify-between mb-10">
         <p className="font-semibold text-2xl text-gray-500">Gemini</p>
         <img
-          src={assets.user_icon}
+          src={assets.my_ai_photo}
           alt="user-icon"
           className="w-9 rounded-full"
         />
@@ -44,7 +44,7 @@ const Main = () => {
         <div className="max-h-[70vh] overflow-y-scroll hide-scrollbar">
           <div className="flex items-center gap-4 mb-4">
             <img
-              src={assets.user_icon}
+              src={assets.my_ai_photo}
               alt="user"
               className="w-9 rounded-full"
             />
@@ -68,7 +68,7 @@ const Main = () => {
           {/* hello section */}
           <div className="mt-18">
             <p className="text-[40px]  bg-gradient-to-r from-blue-400 via-purple-400 via-40% to-pink-600 bg-clip-text text-transparent text-4xl font-bold">
-              Hello, Theint.
+              Hello, Dev.
             </p>
             <p className="text-[40px] font-semibold text-gray-400">
               How can I help you today?
